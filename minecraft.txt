@@ -1,0 +1,13 @@
+piglin
+zombie
+skeleton
+spider
+creeper
+ghast
+chicken
+sheep
+blaze
+warden
+witch
+wither
+slime
