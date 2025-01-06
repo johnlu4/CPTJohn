@@ -10,4 +10,7 @@ blaze
 warden
 witch
 wither
+ender dragon
+enderman
+wither skeleton
 slime
