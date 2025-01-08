@@ -2,20 +2,21 @@ import arc.*;
 
 public class FinalCPTJohn{
 	public static void main(String[] args){
-		Console con = new Console();
-		con.println("hi. here's johny");
-		
+		Console con = new Console("Guess the word", 1280,720);
 		TextInputFile themes = new TextInputFile("themes.txt");
 		
 		String strUsername;
 		String strSelectedTheme;
+		Boolean boolAdvantage = false;
 		con.println("What is your name?");
 		strUsername = con.readLine();
+		
 		
 		while(themes.eof() == false){
 			con.println(themes.readLine());
 			//ThemeLength += 1;
 		}
+		themes.close();
 		con.println("Which theme do you want to play?");
 		strSelectedTheme = con.readLine();
 		
@@ -23,6 +24,7 @@ public class FinalCPTJohn{
 		int WordsLength;
 		WordsLength = 0;
 		while(theme.eof() == false){
+			theme.readLine();
 			WordsLength += 1;
 		}
 		while(WordsLength == 0){
@@ -30,27 +32,30 @@ public class FinalCPTJohn{
 			strSelectedTheme = con.readLine();
 			theme = new TextInputFile(strSelectedTheme+".txt");
 			while(theme.eof() == false){
+				theme.readLine();
 				WordsLength += 1;
 			}
 		}
-		
+		con.println(WordsLength);
+		theme.close();
+		theme = new TextInputFile(strSelectedTheme+".txt");
 		String WordsArray[][] = new String[WordsLength][2];
 		int intLength = 0;
-		con.println("ay");
+		
 		while(theme.eof() == false){
-			WordsArray[intLength][0] = con.readLine();
+			WordsArray[intLength][0] = theme.readLine();
 			intLength += 1;
 		}
+		int intTries = intLength - 4;
+		
 		int intCount;
-		con.println("HI");
+		
 		for(intCount = 0; intCount < WordsLength; intCount++){
 			int intRand = (int)(Math.random() * 100 + 1);
-			con.println(intRand);
-			//WordsArray[intCount][1] = intRand;
+			WordsArray[intCount][1] = String.valueOf(intRand);
 		} 
 		String SelectedWord = RandomizeAndGet(WordsArray);
-		
-		themes.close();
+		con.println(SelectedWord);
 	}
 	
 	public static String RandomizeAndGet(String array2D[][]){
@@ -74,6 +79,6 @@ public class FinalCPTJohn{
 				}
 			}
 		}
-		return "Yes";
+		return array2D[0][0];
 	}
 }

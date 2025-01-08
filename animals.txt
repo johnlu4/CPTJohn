@@ -1,1 +1,14 @@
 human
+chicken
+dinosaur
+turtle
+gorilla
+hippopotamus
+hamster
+donkey
+hedgehog
+rhinocero
+platypus
+cheetah
+raccoon
+squirrel

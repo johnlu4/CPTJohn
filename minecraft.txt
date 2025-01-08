@@ -4,8 +4,8 @@ skeleton
 spider
 creeper
 ghast
-chicken
-sheep
+eldermite
+evoker
 blaze
 warden
 witch
@@ -14,3 +14,6 @@ ender dragon
 enderman
 wither skeleton
 slime
+silverfish
+magma cube
+elder guardian
