@@ -1,0 +1,22 @@
+astronaut
+security guard
+geologist
+doctor
+cashier
+janitor
+programmer
+librarian
+architect
+teacher
+lawyer
+security guard
+police officer
+psychologist
+salesperson
+bartender
+musician
+photographer
+journalist
+electrician
+carpenter
+accountant
