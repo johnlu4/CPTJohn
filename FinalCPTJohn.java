@@ -2,7 +2,6 @@ import arc.*;
 import java.awt.*;
 import java.awt.image.*;
 
-
 public class FinalCPTJohn{
 	public static void main(String[] args){
 		Console con = new Console("Guess the word", 1280,720);
@@ -13,16 +12,19 @@ public class FinalCPTJohn{
 		String strUsername;
 		String strSelectedTheme;
 		Boolean boolAdvantage = false;
+		
 		con.println("What is your name?");
 		strUsername = con.readLine();
 		
-		
+		con.drawRoundRect(100, 100, 50, 70, 3, 3);
+		con.fillRoundRect(200, 200, 50, 70, 3, 3);
 		while(themes.eof() == false){
 			con.println(themes.readLine());
 			//ThemeLength += 1;
 		}
 		
 		themes.close();
+		
 		con.println("Which theme do you want to play?");
 		strSelectedTheme = con.readLine();
 		
@@ -48,6 +50,7 @@ public class FinalCPTJohn{
 		
 		theme = new TextInputFile(strSelectedTheme+".txt");
 		String strWordsArray[][] = new String[intWordsLength][2];
+		
 		int intLength = 0;
 		
 		while(theme.eof() == false){
@@ -62,15 +65,28 @@ public class FinalCPTJohn{
 			strWordsArray[intCount][1] = String.valueOf(intRand);
 		} 
 		
+		
 		String strSecret = GetRandomized(strWordsArray, intWordsLength);
 		
 		
-		String strScrambledWord = ScrambleString(con, strSecret, strSecret.length());
+		String strSecretWordArray[][] = new String[strSecret.length()][2];
+		
+		for(intCount = 0; intCount < strSecret.length(); intCount++){
+			strSecretWordArray[intCount][0] = Character.toString(strSecret.charAt(intCount));
+		} 
+		
+		for(intCount = 0; intCount < strSecret.length(); intCount++){
+			int intRand = (int)(Math.random() * 100 + 1);
+			strSecretWordArray[intCount][1] = String.valueOf(intRand);
+		} 
+		
+		String strScrambledWord = GetRandomized(strSecretWordArray, strSecret.length());
+		
 		int intTries = strSecret.length() - 4;
 		boolean boolGuessed = false;
 		String strGuessedWord;
 		
-		con.println(strSecret + strScrambledWord);
+		con.println(strScrambledWord);
 		if(strUsername.toLowerCase().equals("statitan")){
 			intTries += 2;
 			con.println("You have "+intTries+" Tries. (+2 more with 'advantage')");
@@ -93,12 +109,35 @@ public class FinalCPTJohn{
 		}
 	}
 	
-	public static String ScrambleString(Console con, String word, int intLength){
-		char[] charWordArray = word.toCharArray();
-		
-		
-		
-		return "Yes";
+	
+	public static String ScrambleString(String strArray2D[][], int intWordLength){
+		String strTempTheme;
+		String strTempOrder;
+		int intRow3;
+		int intRow2;
+		int intRow;
+		String strScrambledWord = "";
+		for(intRow2 = 0; intRow2 < intWordLength-1; intRow2++){
+			for(intRow = 0; intRow < intWordLength-1-intRow2; intRow++){
+			// Bubble sort. If left is bigger than right
+			if(Integer.parseInt(strArray2D[intRow][1]) > Integer.parseInt(strArray2D[intRow+1][1])){
+				// Take the left item
+				strTempTheme = strArray2D[intRow][0];
+				strTempOrder = strArray2D[intRow][1];
+				// Right item moves to the left
+				strArray2D[intRow][0] = strArray2D[intRow + 1][0];
+				strArray2D[intRow][1] = strArray2D[intRow + 1][1];
+				// Put temporary value on the right.
+				strArray2D[intRow+1][0] = strTempTheme;
+				strArray2D[intRow+1][1] = strTempOrder;
+				}
+			}
+		}
+		for(intRow3 = 0; intRow3 < intWordLength; intRow3++){
+			strScrambledWord = strScrambledWord + strArray2D[intRow3][0];
+		}
+	
+		return strScrambledWord;
 	}
 	
 	public static String GetRandomized(String strArray2D[][], int intWordLength){
