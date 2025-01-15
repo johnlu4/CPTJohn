@@ -16,8 +16,8 @@ public class FinalCPTJohn{
 		con.println("What is your name?");
 		strUsername = con.readLine();
 		
-		con.drawRoundRect(100, 100, 50, 70, 3, 3);
-		con.fillRoundRect(200, 200, 50, 70, 3, 3);
+		//con.drawRoundRect(100, 100, 50, 70, 9, 9);
+		//con.fillRoundRect(200, 200, 50, 70, 9, 9);
 		while(themes.eof() == false){
 			con.println(themes.readLine());
 			//ThemeLength += 1;
@@ -67,21 +67,38 @@ public class FinalCPTJohn{
 		
 		
 		String strSecret = GetRandomized(strWordsArray, intWordsLength);
+		String strSecretWordArray[][];
+		if(strSecret.contains(" ")){
+			String[] strSplitWordArray = strSecret.split(" ");
+			strSecretWordArray = new String[strSecret.length()][2];
 		
+			for(intCount = 0; intCount < strSecret.length(); intCount++){
+				strSecretWordArray[intCount][0] = Character.toString(strSecret.charAt(intCount));
+				System.out.println(strSecretWordArray[intCount][0]);
+			} 
 		
-		String strSecretWordArray[][] = new String[strSecret.length()][2];
+			for(intCount = 0; intCount < strSecret.length(); intCount++){
+				int intRand = (int)(Math.random() * 100 + 1);
+				strSecretWordArray[intCount][1] = String.valueOf(intRand);
+				System.out.println(strSecretWordArray[intCount][1]);
+			} 	
+		}else{
+			strSecretWordArray = new String[strSecret.length()][2];
 		
-		for(intCount = 0; intCount < strSecret.length(); intCount++){
-			strSecretWordArray[intCount][0] = Character.toString(strSecret.charAt(intCount));
-		} 
+			for(intCount = 0; intCount < strSecret.length(); intCount++){
+				strSecretWordArray[intCount][0] = Character.toString(strSecret.charAt(intCount));
+				System.out.println(strSecretWordArray[intCount][0]);
+			} 
 		
-		for(intCount = 0; intCount < strSecret.length(); intCount++){
-			int intRand = (int)(Math.random() * 100 + 1);
-			strSecretWordArray[intCount][1] = String.valueOf(intRand);
-		} 
+			for(intCount = 0; intCount < strSecret.length(); intCount++){
+				int intRand = (int)(Math.random() * 100 + 1);
+				strSecretWordArray[intCount][1] = String.valueOf(intRand);
+				System.out.println(strSecretWordArray[intCount][1]);
+			} 	
+		}
 		
-		String strScrambledWord = GetRandomized(strSecretWordArray, strSecret.length());
-		
+		String strScrambledWord = ScrambleString(strSecretWordArray, strSecret.length());
+		System.out.println(strScrambledWord);
 		int intTries = strSecret.length() - 4;
 		boolean boolGuessed = false;
 		String strGuessedWord;
