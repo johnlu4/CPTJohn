@@ -11,13 +11,25 @@ public class FinalCPTJohn{
 		
 		String strUsername;
 		String strSelectedTheme;
+		String strMenu;
 		Boolean boolAdvantage = false;
 		
 		con.println("What is your name?");
 		strUsername = con.readLine();
 		
-		//con.drawRoundRect(100, 100, 50, 70, 9, 9);
-		//con.fillRoundRect(200, 200, 50, 70, 9, 9);
+		
+		
+		con.clear();
+		
+		BufferedImage imgGuesstheWord = con.loadImage("GuesstheWord.png");
+		
+		con.drawImage(imgGuesstheWord, 440, 25);
+		con.drawString("(P)lay", 285,420);
+		con.drawString("(H)elp", 535,520);
+		con.drawString("(E)xit", 785,420);
+		con.drawRoundRect(250, 400, 200, 70, 9, 9);
+		con.drawRoundRect(500, 500, 200, 70, 9, 9);
+		con.drawRoundRect(750, 400, 200, 70, 9, 9);
 		while(themes.eof() == false){
 			con.println(themes.readLine());
 			//ThemeLength += 1;
