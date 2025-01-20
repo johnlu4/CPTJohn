@@ -7,7 +7,6 @@ public class FinalCPTJohn{
 		Console con = new Console("Guess the word", 1280,720);
 		//con.setBackgroundColor(Color.WHITE);
 		//con.setTextColor(Color.BLACK);
-		TextInputFile themes = new TextInputFile("themes.txt");
 		BufferedImage imgGuesstheWord = con.loadImage("GuesstheWord.png");
 		
 		String strUsername;
@@ -25,8 +24,9 @@ public class FinalCPTJohn{
 		
 		while(!strMenu.equals("Exit")){
 			if(strMenu.equals("MainMenu")){
-				con.println("Hi");
+				con.println(" ");
 				con.drawImage(imgGuesstheWord, 440, 25);
+				con.drawString("Welcome, "+strUsername+"!", 20,675);
 				con.drawString("(P)lay", 285,420);
 				con.drawString("(H)elp", 535,520);
 				con.drawString("(E)xit", 785,420);
@@ -43,16 +43,35 @@ public class FinalCPTJohn{
 					}else if(getChar == 'h'){
 						strMenu = "HelpMenu";
 						con.clear();
+						con.setDrawColor(Color.BLACK);
+						con.fillRect(0,0,1280,720);
+						con.setDrawColor(Color.WHITE);
 					}else if(getChar == 'p'){
 						strMenu = "PlayMenu";
+						con.clear();
+						con.setDrawColor(Color.BLACK);
+						con.fillRect(0,0,1280,720);
+						con.setDrawColor(Color.WHITE);
 					}
 				}
 				
 			
 			}else if(strMenu.equals("HelpMenu")){			
 				con.println("Help Menu: ");
+				con.println("Welcome to Guess the word!");
+				con.println("Here you have to guess the scrambled word giving on the theme.");
+				con.println("You select any theme available by saying its name");
+				con.println("You have to type the word correctly to win");
+				con.println("If you lose all your tries its game over.");
+				con.println("You have tries calculated by how many letters are in the word - 4");
+				con.println("You will have a highscore depending on how much you win.");
+				con.println("Press any key to return to the main menu.");
 				
+				char getChar = con.getChar();
+				strMenu = "MainMenu";
+				con.clear();
 			}else if(strMenu.equals("PlayMenu")){
+				TextInputFile themes = new TextInputFile("themes.txt");
 				while(themes.eof() == false){
 					con.println(themes.readLine());
 					//ThemeLength += 1;
@@ -166,8 +185,15 @@ public class FinalCPTJohn{
 				}else if(getChar == 'p'){
 					strMenu = "PlayMenu";
 					con.clear();
+					con.setDrawColor(Color.BLACK);
+					con.fillRect(0,0,1280,720);
+					con.setDrawColor(Color.WHITE);
 				}else if(getChar == 'r'){
 					strMenu = "MainMenu";
+					con.clear();
+					con.setDrawColor(Color.BLACK);
+					con.fillRect(0,0,1280,720);
+					con.setDrawColor(Color.WHITE);
 				}
 			}
 		}
