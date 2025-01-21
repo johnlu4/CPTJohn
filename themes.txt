@@ -1,3 +1,5 @@
 minecraft.txt
 animals.txt
 jobs.txt
+shopping brands.txt
+car brands.txt
